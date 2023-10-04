@@ -98,3 +98,21 @@ for i in range(len(I)):
         print('Average Words per message', words_per_message)
     else:
         print('No messages sent by this user.')
+
+
+#Create one long text from the messages
+text = " ".join(review for review in messages_df.Message)
+print("There are {} words in all messages".format(len(text)))
+
+stopwords = set(STOPWORDS)
+
+#Generate a word cloudimage
+wordcloud = WordCloud(stopwords=stopwords, background_color='white').generate(text)
+
+#Display the generated image
+plt.figure(figsize=(10,5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.show()
+
+
